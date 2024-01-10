@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDJiIZKRvOhw2r1F3Xo1R0BRMn5DSfyaVM",
@@ -28,31 +28,42 @@ function Signup() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Validate form fields
     if (!name || !email || !phoneNumber || !password) {
       toast.error("All fields are required");
       return;
     }
-  
+
     try {
       // Log form values
       console.log("Form Values:", name, email, phoneNumber, password);
-  
+
       // Create a new user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  
+
       // Log user details
       console.log("User Created:", userCredential.user);
-  
+
+      // Send user data to Firebase Realtime Database
+      const database = getDatabase(app);
+      const userRef = ref(database, `users/${userCredential.user.uid}`);
+      const userData = {
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber,
+      };
+
+      await set(userRef, userData);
+
       // Display success toast message
       toast.success("Account created successfully!");
-  
+
       // Redirect to login page
       navigate('/login');
     } catch (error) {
       console.error("Error Creating Account:", error.message);
-  
+
       // Check if the error is due to email already in use
       if (error.code === "auth/email-already-in-use") {
         toast.error("Email is already in use. Please use a different email address.");

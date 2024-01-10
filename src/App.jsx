@@ -10,6 +10,7 @@ import Signup from './Pages/Signup.jsx';
 import Login from './Pages/Login.jsx';
 import Courses from './Pages/CoursesPage.jsx';
 import Contact from './Pages/ContactUs.jsx';
+import Profile from './Pages/Profile.jsx';
 
 import LoveBabbarDsa from './Lectures/LoveBabbarDsa.jsx';
 import NodeTechnicalThapa from './Lectures/NodeTechnicalThapa.jsx';
@@ -57,6 +58,7 @@ function App() {
     <Route path='/login' element={<Login />}></Route>
     <Route path='/courses' element={<Courses />}></Route>
     <Route path='/contact' element={<Contact />}></Route>
+    <Route path='/profile' element={<Profile/>}></Route>
 
     {/* Courses Routes */}
     <Route path='/lovebabbardsa' element={<LoveBabbarDsa />}></Route>
