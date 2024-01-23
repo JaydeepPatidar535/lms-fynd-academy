@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { Link } from "react-router-dom";
 import AuthenticatedHomeLayout from "../Layouts/AuthenticatedHomeLayout";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, off } from "firebase/database";
@@ -11,6 +10,8 @@ const Profile = () => {
     phone: "",
     email: "",
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Initialize Firebase with your configuration
@@ -30,6 +31,7 @@ const Profile = () => {
 
     if (!auth.currentUser) {
       // No authenticated user, handle accordingly (redirect to login, etc.)
+      setLoading(false);
       return;
     }
 
@@ -38,15 +40,21 @@ const Profile = () => {
 
     // Fetch data from Firebase Realtime Database
     const onData = (snapshot) => {
-      const data = snapshot.val();
+      try {
+        const data = snapshot.val();
 
-      if (data) {
-        // Update state with the fetched data
-        setUserData({
-          name: data.name || "",
-          phone: data.phoneNumber || "",
-          email: data.email || "",
-        });
+        if (data) {
+          // Update state with the fetched data
+          setUserData({
+            name: data.name || "",
+            phone: data.phoneNumber || "",
+            email: data.email || "",
+          });
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -64,23 +72,26 @@ const Profile = () => {
         <div className="max-w-xs">
           <div className="bg-gray-50 dark:bg-gray-900 shadow-xl rounded-lg py-3">
             <div className="p-2">
-              <table className="text-L my-3">
-                <tbody>
-                  <tr>
-                    <td className="px-2 py-2 text-gray-500 font-semibold">Name:</td>
-                    <td className="px-2 py-2">{userData.name}</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-2 text-gray-500 font-semibold">Phone:</td>
-                    <td className="px-2 py-2">{userData.phone}</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-2 text-gray-500 font-semibold">Email:</td>
-                    <td className="px-2 py-2">{userData.email}</td>
-                  </tr>
-                </tbody>
-              </table>
-
+              {loading && <p>Loading...</p>}
+              {error && <p>Error: {error}</p>}
+              {!loading && !error && (
+                <table className="text-L my-3">
+                  <tbody>
+                    <tr>
+                      <td className="px-2 py-2 text-gray-500 font-semibold">Name:</td>
+                      <td className="px-2 py-2">{userData.name}</td>
+                    </tr>
+                    <tr>
+                      <td className="px-2 py-2 text-gray-500 font-semibold">Phone:</td>
+                      <td className="px-2 py-2">{userData.phone}</td>
+                    </tr>
+                    <tr>
+                      <td className="px-2 py-2 text-gray-500 font-semibold">Email:</td>
+                      <td className="px-2 py-2">{userData.email}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              )}
               <div className="text-center my-3"></div>
             </div>
           </div>
