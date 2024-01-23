@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AuthenticatedHomeLayout from "../Layouts/AuthenticatedHomeLayout";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
@@ -27,33 +27,32 @@ const Profile = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Get authentication object after the app is initialized
-        const auth = getAuth(app);
+    const auth = getAuth(app);
 
-        if (!auth.currentUser) {
+    // Listen for changes in authentication state
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      try {
+        if (user) {
+          // Reference to the authenticated user's data in Firebase Realtime Database
+          const dbRef = ref(getDatabase(app), `users/${user.uid}`);
+
+          // Fetch data from Firebase Realtime Database using get() and once()
+          const snapshot = await get(dbRef);
+
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            setUserData({
+              name: data.name || "",
+              phone: data.phoneNumber || "",
+              email: data.email || "",
+            });
+          } else {
+            // Handle the case where the user data doesn't exist
+            setError("User data not found");
+          }
+        } else {
           // No authenticated user, handle accordingly (redirect to login, etc.)
           setLoading(false);
-          return;
-        }
-
-        // Reference to the authenticated user's data in Firebase Realtime Database
-        const dbRef = ref(getDatabase(app), `users/${auth.currentUser.uid}`);
-
-        // Fetch data from Firebase Realtime Database using get() and once()
-        const snapshot = await get(dbRef);
-
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setUserData({
-            name: data.name || "",
-            phone: data.phoneNumber || "",
-            email: data.email || "",
-          });
-        } else {
-          // Handle the case where the user data doesn't exist
-          setError("User data not found");
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -61,10 +60,10 @@ const Profile = () => {
       } finally {
         setLoading(false);
       }
-    };
+    });
 
-    // Call fetchData on component mount and subsequent re-renders
-    fetchData();
+    // Cleanup the listener when the component unmounts
+    return () => unsubscribe();
   }, []); // Pass an empty dependency array
 
   return (
