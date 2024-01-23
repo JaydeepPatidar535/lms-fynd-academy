@@ -256,47 +256,51 @@ const CoursesPage = () => {
     "Nextjs",
   ];
 
+
   return (
     <AuthenticatedHomeLayout>
-      <div className="flex items-center justify-center py-4 md:py-8 flex-wrap">
-        {categories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            className={`text-gray-900 border border-white hover:border-gray-200 ${
-              selectedCategory === category
-                ? "bg-blue-700 text-white"
-                : "dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white text-gray-900"
-            } rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 ${
-              selectedCategory === category
-                ? "dark:text-white dark:focus:ring-gray-800"
-                : "dark:text-white dark:focus:ring-gray-800"
-            }`}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      <div className="py-16 md:py-8">
+        <div className="hidden md:flex justify-center">
+          {/* Render categories only on screens larger than md (medium) */}
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className={`text-gray-900 border border-white hover:border-gray-200 ${
+                selectedCategory === category
+                  ? "bg-blue-700 text-white"
+                  : "dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white text-gray-900"
+              } rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 ${
+                selectedCategory === category
+                  ? "dark:text-white dark:focus:ring-gray-800"
+                  : "dark:text-white dark:focus:ring-gray-800"
+              }`}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-10">
-        {filteredCourses.map((course, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center transition-transform transform hover:scale-105 hover:shadow-lg"
-          >
-            <Link to={course.link}>
-              <img
-                className="h-auto max-w-sm rounded-lg"
-                src={course.imageUrl}
-                alt={course.title}
-              />
-            </Link>
-            <h4 className="mt-3 mb-5 font-bold text-center text-white-500 hover:text-white-700 transition-colors">
-              <Link to={course.link}>{course.title}</Link>
-            </h4>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 md:p-10">
+          {filteredCourses.map((course, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center transition-transform transform hover:scale-105 hover:shadow-lg"
+            >
+              <Link to={course.link}>
+                <img
+                  className="h-auto max-w-full rounded-lg"
+                  src={course.imageUrl}
+                  alt={course.title}
+                />
+              </Link>
+              <h4 className="mt-3 mb-5 font-bold text-center text-white-500 hover:text-white-700 transition-colors">
+                <Link to={course.link}>{course.title}</Link>
+              </h4>
+            </div>
+          ))}
+        </div>
       </div>
     </AuthenticatedHomeLayout>
   );
