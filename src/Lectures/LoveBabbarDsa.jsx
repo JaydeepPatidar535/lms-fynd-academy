@@ -717,7 +717,8 @@ const LoveBabbarDsa = () => {
 
   return (
     <AuthenticatedHomeLayout>
-      <h1 className="mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+      <h1 className={`mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl ${"sm:mb-4"}`}>
+
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
           Love Babbar
         </span>{" "}
@@ -727,17 +728,17 @@ const LoveBabbarDsa = () => {
       <div className="flex flex-col md:flex-row items-center">
         <div className="md:w-3/4 p-4">
           <div className="flex items-center justify-center h-max my-4">
-          <iframe
-  title="LoveBabbar DSA Playlist"
-  width="100%"
-  height="315"
-  className="md:w-[960px] xl:w-[960px] 2xl:w-[960px] md:h-[400px] lg:h-[500px] xl:h-[555px] 2xl:h-[555px]"
-  src={updateIframeSource(selectedVideo)}
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  playsInline // Add playsinline attribute for mobile devices
-></iframe>
+            <iframe
+              title="LoveBabbar DSA Playlist"
+              width="100%"
+              height="200"
+              className="md:w-[960px] xl:w-[960px] 2xl:w-[960px] md:h-[400px] lg:h-[500px] xl:h-[555px] 2xl:h-[555px]"
+              src={updateIframeSource(selectedVideo)}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              playsInline // Add playsinline attribute for mobile devices
+            ></iframe>
           </div>
         </div>
 
@@ -748,7 +749,7 @@ const LoveBabbarDsa = () => {
                 <li key={lecture.id}>
                   <button
                     onClick={() => setSelectedVideo(lecture.id)}
-                    className={` font-bold text-lg ${
+                    className={`font-bold text-lg ${
                       selectedVideo === lecture.id ? "text-black" : ""
                     } ml-10`}
                   >
