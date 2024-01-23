@@ -4,6 +4,19 @@ import AuthenticatedHomeLayout from "../Layouts/AuthenticatedHomeLayout";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 
+// Initialize Firebase with your configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDJiIZKRvOhw2r1F3Xo1R0BRMn5DSfyaVM",
+  authDomain: "learnovation-cff6b.firebaseapp.com",
+  projectId: "learnovation-cff6b",
+  storageBucket: "learnovation-cff6b.appspot.com",
+  messagingSenderId: "898788655760",
+  appId: "1:898788655760:web:9890c1dd4ea51bc17b0e15",
+  measurementId: "G-SZJ33XSDS8",
+};
+
+const app = initializeApp(firebaseConfig);
+
 const Profile = () => {
   const [userData, setUserData] = useState({
     name: "",
@@ -16,18 +29,6 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Initialize Firebase with your configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyDJiIZKRvOhw2r1F3Xo1R0BRMn5DSfyaVM",
-          authDomain: "learnovation-cff6b.firebaseapp.com",
-          projectId: "learnovation-cff6b",
-          storageBucket: "learnovation-cff6b.appspot.com",
-          messagingSenderId: "898788655760",
-          appId: "1:898788655760:web:9890c1dd4ea51bc17b0e15",
-          measurementId: "G-SZJ33XSDS8",
-        };
-        const app = initializeApp(firebaseConfig);
-
         // Get authentication object after the app is initialized
         const auth = getAuth(app);
 
@@ -62,8 +63,9 @@ const Profile = () => {
       }
     };
 
+    // Call fetchData on component mount and subsequent re-renders
     fetchData();
-  }, []);
+  }, []); // Pass an empty dependency array
 
   return (
     <AuthenticatedHomeLayout>
