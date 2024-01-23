@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 
 const auth = getAuth();
 
@@ -25,7 +28,7 @@ function Login() {
       await signInWithEmailAndPassword(auth, email, password);
 
       // Use navigate to navigate to the '/courses' route
-      navigate('/courses');
+      navigate("/courses");
 
       // Display a success toast message
       toast.success("Login successful!");
@@ -53,7 +56,10 @@ function Login() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" onSubmit={handleFormSubmit}>
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={handleFormSubmit}
+              >
                 <div>
                   <label
                     htmlFor="email"
@@ -89,10 +95,7 @@ function Login() {
                   />
                 </div>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    
-                   
-                  </div>
+                  <div className="flex items-start"></div>
                   <a
                     href="#"
                     className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
@@ -102,10 +105,11 @@ function Login() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
                 >
                   Sign in
                 </button>
+
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
                   <Link

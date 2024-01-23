@@ -3,8 +3,16 @@ import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import {
+  getDatabase,
+  ref,
+  set,
+} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDJiIZKRvOhw2r1F3Xo1R0BRMn5DSfyaVM",
@@ -13,7 +21,7 @@ const firebaseConfig = {
   storageBucket: "learnovation-cff6b.appspot.com",
   messagingSenderId: "898788655760",
   appId: "1:898788655760:web:9890c1dd4ea51bc17b0e15",
-  measurementId: "G-SZJ33XSDS8"
+  measurementId: "G-SZJ33XSDS8",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -40,7 +48,11 @@ function Signup() {
       console.log("Form Values:", name, email, phoneNumber, password);
 
       // Create a new user with email and password
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
       // Log user details
       console.log("User Created:", userCredential.user);
@@ -60,19 +72,20 @@ function Signup() {
       toast.success("Account created successfully!");
 
       // Redirect to login page
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
       console.error("Error Creating Account:", error.message);
 
       // Check if the error is due to email already in use
       if (error.code === "auth/email-already-in-use") {
-        toast.error("Email is already in use. Please use a different email address.");
+        toast.error(
+          "Email is already in use. Please use a different email address."
+        );
       } else {
         toast.error("Error creating account. Please try again.");
       }
     }
   };
-
 
   return (
     <HomeLayout>
@@ -83,7 +96,10 @@ function Signup() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Registration Form
               </h1>
-              <form className="space-y-4 md:space-y-6" onSubmit={handleFormSubmit}>
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={handleFormSubmit}
+              >
                 <div>
                   <label
                     htmlFor="name"
@@ -153,13 +169,13 @@ function Signup() {
                   />
                 </div>
 
-                
                 <button
                   type="submit"
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
                 >
                   Create an account
                 </button>
+
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
                   <Link
