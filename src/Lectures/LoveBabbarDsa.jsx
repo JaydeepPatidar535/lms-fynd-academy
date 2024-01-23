@@ -730,8 +730,8 @@ const LoveBabbarDsa = () => {
           <div className="flex items-center justify-center h-max my-4">
             <iframe
               title="LoveBabbar DSA Playlist"
-              width="100%"
-              height="200"
+              width="390"
+              height="225"
               className="md:w-[960px] xl:w-[960px] 2xl:w-[960px] md:h-[400px] lg:h-[500px] xl:h-[555px] 2xl:h-[555px]"
               src={updateIframeSource(selectedVideo)}
               frameBorder="0"
