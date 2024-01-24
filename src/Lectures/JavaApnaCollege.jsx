@@ -20,10 +20,11 @@ const JavaApnaCollege = () => {
 
   return (
     <AuthenticatedHomeLayout>
-      <h1 className={`mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl ${"sm:mb-4"}`}>
-
+      <h1
+        className={`hidden md:block mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl`}
+      >
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-          Apna College
+          Apna College 
         </span>{" "}
         Java Course
       </h1>
@@ -35,7 +36,8 @@ const JavaApnaCollege = () => {
               title="Java Lecture"
               width="390"
               height="225"
-              className="md:w-[960px] xl:w-[960px] 2xl:w-[960px] md:h-[400px] lg:h-[500px] xl:h-[555px] 2xl:h-[555px]"
+              className="md:w-[960px] xl:w-[960px] 2xl:w-[960px] md:h-[400px] lg:h-[500px] xl:h-[555px] 2xl:h-[555px] mt-6 md:mt-0"
+              // Add margin-top when h1 is hidden on small screens
               src={updateIframeSource(selectedVideo)}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -67,4 +69,5 @@ const JavaApnaCollege = () => {
     </AuthenticatedHomeLayout>
   );
 };
+
 export default JavaApnaCollege;

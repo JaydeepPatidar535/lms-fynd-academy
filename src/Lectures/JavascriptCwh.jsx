@@ -41,8 +41,7 @@ const JavascriptCwh = () => {
     },
     {
       id: 8,
-      title:
-        "Operators and Conditionals",
+      title: "Operators and Conditionals",
       link: "https://www.youtube.com/embed/W77qmqrhCcA",
     },
     {
@@ -533,8 +532,9 @@ const JavascriptCwh = () => {
 
   return (
     <AuthenticatedHomeLayout>
-      <h1 className={`mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl ${"sm:mb-4"}`}>
-
+      <h1
+        className={`hidden md:block mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl`}
+      >
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
           Code With Harry
         </span>{" "}

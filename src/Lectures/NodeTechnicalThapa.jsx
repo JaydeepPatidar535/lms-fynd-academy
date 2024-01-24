@@ -371,86 +371,72 @@ const NodeTechnicalThapa = () => {
     },
     {
       id: "74",
-      title:
-        "Encryption vs Hashing",
+      title: "Encryption vs Hashing",
       link: "https://www.youtube.com/embed/8imz7zRHkSM",
     },
     {
       id: "75",
-      title:
-        "Secure Registration System ",
+      title: "Secure Registration System ",
       link: "https://www.youtube.com/embed/ggQhhE22N14",
     },
     {
       id: "76",
-      title:
-        "Complete Login Validation ",
+      title: "Complete Login Validation ",
       link: "https://www.youtube.com/embed/DdsLXh-z_uc",
     },
     {
       id: "77",
-      title:
-        "Node JS Authentication & Cookies",
+      title: "Node JS Authentication & Cookies",
       link: "https://www.youtube.com/embed/OV8nPN4ym24",
     },
     {
       id: "78",
-      title:
-        "Registration Form ",
+      title: "Registration Form ",
       link: "https://www.youtube.com/embed/XeXGH5Y1YFo",
     },
     {
       id: "79",
-      title:
-        "Login Form Signing In User",
+      title: "Login Form Signing In User",
       link: "https://www.youtube.com/embed/AkL3-GHyuho",
     },
     {
       id: "80",
-      title:
-        "Manage Secrets & Configs using ",
+      title: "Manage Secrets & Configs using ",
       link: "https://www.youtube.com/embed/zoqW6qSjSfI",
     },
     {
       id: "81",
-      title:
-        "Secure JWT Authentication ",
+      title: "Secure JWT Authentication ",
       link: "https://www.youtube.com/embed/VBBJ-1QLZwY",
     },
     {
       id: "82",
-      title:
-        "NodeJS MongoDB Challenge ",
+      title: "NodeJS MongoDB Challenge ",
       link: "https://www.youtube.com/embed/HYAInM89WWY",
     },
     {
       id: "83",
-      title:
-        "How to Get Cookie Value ",
+      title: "How to Get Cookie Value ",
       link: "https://www.youtube.com/embed/0g1NQiln2XE",
     },
     {
       id: "84",
-      title:
-        "Complete User Authentication",
+      title: "Complete User Authentication",
       link: "https://www.youtube.com/embed/jJVwNdeS4Ms",
     },
     {
       id: "85",
-      title:
-        "Logout User & Delete Cookie",
+      title: "Logout User & Delete Cookie",
       link: "https://www.youtube.com/embed/Z0MnltqC8T8",
     },
     {
       id: "86",
-      title:
-        "Sign Out User from all Devices",
+      title: "Sign Out User from all Devices",
       link: "https://www.youtube.com/embed/whHpTvtMcss",
     },
     {
       id: "87",
-      title:
-        "Complete Responsive ",
+      title: "Complete Responsive ",
       link: "https://www.youtube.com/embed/aHEYzt8stHg",
     },
   ];
@@ -466,10 +452,11 @@ const NodeTechnicalThapa = () => {
 
   return (
     <AuthenticatedHomeLayout>
-      <h1 className={`mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl ${"sm:mb-4"}`}>
-
+      <h1
+        className={`hidden md:block mb-7 text-center my-3 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-6xl`}
+      >
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-         Technical Thapa
+          Technical Thapa
         </span>{" "}
         NodeJs Course
       </h1>
@@ -513,6 +500,5 @@ const NodeTechnicalThapa = () => {
     </AuthenticatedHomeLayout>
   );
 };
-
 
 export default NodeTechnicalThapa;
